@@ -1,4 +1,4 @@
-package com.example.dsc_chatbot;
+package com.example.dsc_chatbot.Activities;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,9 +12,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dsc_chatbot.R;
+import com.example.dsc_chatbot.RestAPI;
+
+import java.util.Map;
+
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
 import nl.dionsegijn.konfetti.models.Size;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -52,6 +60,18 @@ public class ChatActivity extends AppCompatActivity {
 
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             Log.d("SEND", "Send was clicked");
+            RestAPI.getAppService(false).getReply(message).enqueue(new Callback<Map<String, String>>() {
+                @Override
+                public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                    Log.d("Call", "onResponse: " + response.body().get("response"));
+                    Toast.makeText(ChatActivity.this, response.body().get("response"), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Map<String, String>> call, Throwable t) {
+                    Log.e("Call", "onResponse: " + t.toString());
+                }
+            });
         }
         messageBox.setText("");
 
