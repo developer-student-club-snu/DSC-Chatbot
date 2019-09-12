@@ -30,6 +30,8 @@ dependencies {
 
     /*THIRD PARTY LIBRARIES*/
 
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
     //Confetti
     implementation 'nl.dionsegijn:konfetti:1.1.3'
 
