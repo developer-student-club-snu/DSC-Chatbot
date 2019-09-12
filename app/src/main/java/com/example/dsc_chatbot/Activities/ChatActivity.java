@@ -60,18 +60,7 @@ public class ChatActivity extends AppCompatActivity {
 
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             Log.d("SEND", "Send was clicked");
-            RestAPI.getAppService(false).getReply(message).enqueue(new Callback<Map<String, String>>() {
-                @Override
-                public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
-                    Log.d("Call", "onResponse: " + response.body().get("response"));
-                    Toast.makeText(ChatActivity.this, response.body().get("response"), Toast.LENGTH_SHORT).show();
-                }
 
-                @Override
-                public void onFailure(Call<Map<String, String>> call, Throwable t) {
-                    Log.e("Call", "onResponse: " + t.toString());
-                }
-            });
         }
         messageBox.setText("");
 

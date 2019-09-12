@@ -7,23 +7,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestAPI {
-    //Creating a retrofit object
-    static Retrofit retrofitM = new Retrofit.Builder()
-            .baseUrl(RestService.BASE_URL_MARVEL)
-            .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
-            .build();
-
     static Gson gson = new GsonBuilder()
             .setLenient()
             .create();
 
+    //Creating a retrofit object
     static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(RestService.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson)) //Here we are using the GsonConverterFactory to directly convert json data to object
             .build();
 
-    public static RestService getAppService(boolean marvel){
-        if(marvel) return retrofitM.create(RestService.class);
-        else return retrofit.create(RestService.class);
+    public static RestService getAppService(){
+        return retrofit.create(RestService.class);
     }
 }
