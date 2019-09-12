@@ -1,14 +1,19 @@
 package com.example.dsc_chatbot;
 
-import java.util.List;
-import java.util.Map;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-import retrofit2.Call;
-import retrofit2.http.GET;
+public class RestAPI {
+    //Creating a retrofit object
+    static Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(RestService.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+            .build();
 
-public interface RestAPI {
-    String BASE_URL = "https://simplifiedcoding.net/demos/";
+    //creating the api interface
+    static RestService api = retrofit.create(RestService.class);
 
-    @GET("marvel")
-    Call<List<Map<String, String>>> getHeroes();
+    public static RestService getAppService(){
+        return api;
+    }
 }
