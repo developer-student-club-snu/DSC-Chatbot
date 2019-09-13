@@ -15,7 +15,7 @@ public class RestAPI {
     //Creating a retrofit object
     static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(RestService.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+            .addConverterFactory(GsonConverterFactory.create(gson)) //Here we are using the GsonConverterFactory to directly convert json data to object
             .build();
 
     //creating the api interface
