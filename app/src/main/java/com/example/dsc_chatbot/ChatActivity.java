@@ -38,9 +38,6 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        messageBox = findViewById(R.id.messageBox);
-        sendButton = findViewById(R.id.sendButton);
-        viewKonfetti = findViewById(R.id.viewKonfetti);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -64,6 +61,12 @@ public class ChatActivity extends AppCompatActivity {
         messageList.add("xgdfbdghbfdbdbdf");
         mAdapter = new MyAdapter(messageList);
         recyclerView.setAdapter(mAdapter);
+
+
+        messageBox = findViewById(R.id.messageBox);
+        sendButton = findViewById(R.id.sendButton);
+        viewKonfetti = findViewById(R.id.viewKonfetti);
+
     }
 
     public void onSendPress(View view) {
